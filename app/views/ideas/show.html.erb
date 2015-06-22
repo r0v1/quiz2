@@ -1,0 +1,61 @@
+<h2>Idea Factory (<% Idea.find params[:id] %>)</h2>
+
+<p>Title: <%= @idea.title %></p>
+<p>Body: <%= @idea.body %></p>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= button_to "Edit Idea", edit_idea_path, method: :get %></td>
+          <td><%= button_to "Delete Idea", idea_path(@idea), method: :delete,
+                    data: {confirm: "Do you really want to delete it?"} %></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h2>New Comment</h2>
+
+    <%= form_for [@idea, @comment] do |f| %>
+      <div>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+      <div>
+               <%= f.submit %>
+    <% end %>
+</div>
+
+<div>
+  <h2>All Comments (<% Comment.count %>)</h2>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Body</th>
+          <th>Created On</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @idea.comments.each do |comment| %>
+          <tr>
+            <td><%= comment.body %></td>
+            <td><%= formatted_date(comment.created_at) %></td>
+            <td><%= button_to "Delete", idea_comment_path(@idea, comment),
+                method: :delete,
+                data: {confirm: "Are you sure you want to delete this comment?"} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+</div>

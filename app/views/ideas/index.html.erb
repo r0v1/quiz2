@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Idea Factory</h1>
+
+  <p>current time: <%= @current_time %></p>
+
+  <h2>All Ideas (<% Idea.count %>)</h2>
+
+  <%= button_to "Add a New Idea", new_idea_path, method: :get %>
+  <br>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+          <th colspan="3">Actions</th>
+          <th>Created by</th>
+          <th>Join</th>
+          <th>Total Members</th>
+          <th>Like</th>
+          <th>Total Likes</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <% @ideas.each do |idea| %>
+          <tr>
+            <td><%= idea.title %></td>
+            <td><%= idea.body %></td>
+            <td><%= button_to "View", idea_path(idea), method: :get %></td>
+            <td><%= button_to "Edit", edit_idea_path(idea), method: :get %> </td>
+            <td><%= button_to "Delete", idea_path(idea),
+                method: :delete,
+                data: {confirm: "Are you sure you want to delete this idea?"} %>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+    <%# paginate @posts, q: params[:q] %>
+
+</div>

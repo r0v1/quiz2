@@ -1,0 +1,18 @@
+
+<div>
+  <%= form_for @idea do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, :cols => 45, :rows => 20 %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.submit "Save" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ifactories</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <style>
+    @media only screen and (min-width : 320px)
+    {body {background: red; color: green;}}
+
+    /* Extra small devices, Phones */
+    @media only screen and (min-width : 480px)
+    {body {background: yellow; color: blue;}}
+
+    /* Small devices, tablets */
+    @media only screen and (min-width : 768px)
+    {body {background: blue; color: orange;}}
+
+    /* Medium devices, desktops */
+    @media only screen and (min-width : 992px)
+    {body {background: green; color: red;}}
+
+    /* Large Devices, wide screens */
+    @media only screen and (min-width : 1200px)
+    {body {background: orange; color: blue;}}
+  </style>
+
+
+</head>
+<body>
+  <div class="container">
+
+    <%= link_to "All Ideas", ideas_path %> |
+    <%= link_to "New Idea", new_idea_path %> |
+
+    <% if user_signed_in? %>
+      <%= link_to "logout #{current_user.email}", sessions_path, method: :delete,
+                   data: {confirm: "log out?"} %>
+    <% else %>
+      <%= link_to "login", new_session_path %> |
+      <%= link_to "sign up", new_user_path %>
+    <% end %>
+    <hr>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+    <% end %>
+
+    <%= yield %>
+
+  </div>
+
+</body>
+</html>
