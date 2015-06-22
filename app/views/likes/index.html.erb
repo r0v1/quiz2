@@ -1,0 +1,7 @@
+<%= link_to "&lt; Back".html_safe, @idea %>
+
+<h1>Users who liked <%= @idea.title %></h1>
+
+<% @users.each do |user| %>
+  <div><%= user.full_name %></div>
+<% end %>
